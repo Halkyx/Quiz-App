@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainMenu">
+
+    <fragment
+        android:id="@+id/categories"
+        android:name="com.example.thegreatestquizzever.Categories"
+        android:label="fragment_categories"
+        tools:layout="@layout/fragment_categories" >
+        <action
+            android:id="@+id/action_categories_to_difficulties"
+            app:destination="@id/difficulties" />
+    </fragment>
+    <fragment
+        android:id="@+id/difficulties"
+        android:name="com.example.thegreatestquizzever.Difficulties"
+        android:label="fragment_difficulties"
+        tools:layout="@layout/fragment_difficulties" >
+        <action
+            android:id="@+id/action_difficulties_to_play"
+            app:destination="@id/play" />
+    </fragment>
+    <fragment
+        android:id="@+id/results"
+        android:name="com.example.thegreatestquizzever.Results"
+        android:label="fragment_results"
+        tools:layout="@layout/fragment_results" />
+    <fragment
+        android:id="@+id/play"
+        android:name="com.example.thegreatestquizzever.Play"
+        android:label="fragment_play"
+        tools:layout="@layout/fragment_play" >
+        <action
+            android:id="@+id/action_play_to_results"
+            app:destination="@id/results" />
+        <action
+            android:id="@+id/action_play_to_mainMenu"
+            app:destination="@id/mainMenu" />
+        <action
+            android:id="@+id/action_play_to_categories"
+            app:destination="@id/categories" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainMenu"
+        android:name="com.example.thegreatestquizzever.MainMenu"
+        android:label="fragment_main_menu"
+        tools:layout="@layout/fragment_main_menu" >
+        <action
+            android:id="@+id/action_mainMenu_to_categories"
+            app:destination="@id/categories" />
+        <action
+            android:id="@+id/action_mainMenu_to_scoreTable"
+            app:destination="@id/scoreTable" />
+        <action
+            android:id="@+id/action_mainMenu_to_credit"
+            app:destination="@id/credit" />
+    </fragment>
+    <fragment
+        android:id="@+id/scoreTable"
+        android:name="com.example.thegreatestquizzever.ScoreTable"
+        android:label="fragment_score_table"
+        tools:layout="@layout/fragment_score_table" />
+    <fragment
+        android:id="@+id/credit"
+        android:name="com.example.thegreatestquizzever.Credit"
+        android:label="fragment_credit"
+        tools:layout="@layout/fragment_credit" />
+</navigation>

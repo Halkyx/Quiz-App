@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/bg"
+    tools:context=".Credit">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffff5e"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        android:text="App devs:"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffff5e"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:text="Vu Tuan Kiet"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffff5e"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:text="Trinh Cong Manh"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffff5e"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        android:text="Contacts"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffff5e"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:text="tcmanh2002@gmail.com"/>
+</LinearLayout>
