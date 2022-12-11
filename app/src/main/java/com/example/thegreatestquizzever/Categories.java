@@ -41,31 +41,31 @@ public class Categories extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.history:
-                sendCategoryData("History");
+                sendCategoryData(1);
                 break;
             case R.id.music:
-                sendCategoryData("Music");
+                sendCategoryData(2);
                 break;
             case R.id.sci:
-                sendCategoryData("Science");
+                sendCategoryData(3);
                 break;
             case R.id.game:
-                sendCategoryData("Game");
+                sendCategoryData(4);
                 break;
             case R.id.maths:
-                sendCategoryData("Maths");
+                sendCategoryData(5);
                 break;
             case R.id.sports:
-                sendCategoryData("Sport");
+                sendCategoryData(6);
                 break;
         }
     }
-    private void sendCategoryData(String data) {
+    private void sendCategoryData(int data) {
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.frame_layout, new Difficulties()).commit();
         Bundle result = new Bundle();
-        result.putString("Category", data);
+        result.putInt("Category", data);
         getParentFragmentManager().setFragmentResult("Category", result);
     }
 }

@@ -20,7 +20,7 @@ import com.example.thegreatestquizzever.databinding.FragmentDifficultiesBinding;
 public class Difficulties extends Fragment implements View.OnClickListener{
 
     private FragmentDifficultiesBinding binding;
-    private String chosenCate;
+    private int chosenCate;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class Difficulties extends Fragment implements View.OnClickListener{
         getParentFragmentManager().setFragmentResultListener("Category", this, new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                chosenCate = result.getString("Category");
+                chosenCate = result.getInt("Category");
             }
         });
         binding.easyBtn.setOnClickListener(this);
@@ -40,26 +40,23 @@ public class Difficulties extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.easy_btn:
-                sendDiffData("Easy");
+                sendDiffData(1);
                 break;
 
             case R.id.normal_btn:
-                sendDiffData("Normal");
+                sendDiffData(2);
                 break;
 
             case R.id.hard_btn:
-                sendDiffData("Hard");
+                sendDiffData(3);
                 break;
         }
 
     }
-    private void sendDiffData(String difficulty) {
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.replace(R.id.frame_layout, new PlayFragment()).commit();
-        Bundle result = new Bundle();
-        result.putString("Diff", difficulty);
-        result.putString("Category", chosenCate);
-        getParentFragmentManager().setFragmentResult("Diff", result);
+    private void sendDiffData(int difficulty) {
+        Intent intent = new Intent(getActivity().getBaseContext(), PlayActivity.class);
+        intent.putExtra("Category", chosenCate);
+        intent.putExtra("Diff", difficulty);
+        getActivity().startActivity(intent);
     }
 }

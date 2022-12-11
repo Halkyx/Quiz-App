@@ -24,19 +24,125 @@ import com.example.thegreatestquizzever.databinding.ActivityPlayBinding;
 public class PlayActivity extends AppCompatActivity {
 
     ActivityPlayBinding binding;
-//    private String Cate;
-//    private String Diff;
+    private int chosenCate;
+    private int chosenDiff;
     private ArrayList<Question> questionList;
     private int questionIndex;
     private int score;
+    static String Cate = "";
+    static String Diff = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityPlayBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-//        binding.Cate.setText(Cate);
-//        binding.Diff.setText(Diff);
+        chosenCate = getIntent().getIntExtra("Category",0);
+        chosenDiff = getIntent().getIntExtra("Diff",0);
+        if (chosenCate == 1)
+        {
+            if (chosenDiff == 1)
+            {
+                Cate = "History";
+                Diff = "Easy";
+            }
+            else if (chosenDiff == 2)
+            {
+                Cate = "History";
+                Diff = "Normal";
+            }
+            else{
+                Cate = "History";
+                Diff = "Hard";
+            }
+        }
+        else if (chosenCate == 2)
+        {
+            if (chosenDiff == 1)
+            {
+                Cate = "Music";
+                Diff = "Easy";
+            }
+            else if (chosenDiff == 2)
+            {
+                Cate = "Music";
+                Diff = "Normal";
+            }
+            else{
+                Cate = "Music";
+                Diff = "Hard";
+            }
+        }
+        else if (chosenCate == 3)
+        {
+            if (chosenDiff == 1)
+            {
+                Cate = "Science";
+                Diff = "Easy";
+            }
+            else if (chosenDiff == 2)
+            {
+                Cate = "Science";
+                Diff = "Normal";
+            }
+            else{
+                Cate = "Science";
+                Diff = "Hard";
+            }
+        }
+        else if (chosenCate == 4)
+        {
+            if (chosenDiff == 1)
+            {
+                Cate = "Game";
+                Diff = "Easy";
+            }
+            else if (chosenDiff == 2)
+            {
+                Cate = "Game";
+                Diff = "Normal";
+            }
+            else{
+                Cate = "Game";
+                Diff = "Hard";
+            }
+        }
+        else if (chosenCate == 5)
+        {
+            if (chosenDiff == 1)
+            {
+                Cate = "Maths";
+                Diff = "Easy";
+            }
+            else if (chosenDiff == 2)
+            {
+                Cate = "Maths";
+                Diff = "Normal";
+            }
+            else{
+                Cate = "Maths";
+                Diff = "Hard";
+            }
+        }
+        else
+        {
+            if (chosenDiff == 1)
+            {
+                Cate = "Sports";
+                Diff = "Easy";
+            }
+            else if (chosenDiff == 2)
+            {
+                Cate = "Sports";
+                Diff = "Normal";
+            }
+            else{
+                Cate = "Sports";
+                Diff = "Hard";
+            }
+        }
+        binding.Cate.setText(Cate);
+        binding.Diff.setText(Diff);
         getQuestionList();
         onClickAnswer();
     }
@@ -52,8 +158,6 @@ public class PlayActivity extends AppCompatActivity {
 
     private void getQuestionList() {
         questionList = new ArrayList<>();
-        String Cate = getIntent().getStringExtra("Category");
-        String Diff= getIntent().getStringExtra("Diff");
         questionList = QuestionBank.getQuestionList(Cate, Diff);
         setQuestionList();
     }
@@ -77,13 +181,13 @@ public class PlayActivity extends AppCompatActivity {
         else {
             String correctAnsws = String.valueOf(score) + "/" + String.valueOf(questionList.size());
             String date = getDate();
-            String Cate = getIntent().getStringExtra("Category");
-            String Diff= getIntent().getStringExtra("Diff");
             ScoreTableItem item = new ScoreTableItem(correctAnsws, Cate, Diff, date);
             ScoreTable.addScoreItem(item);
             Intent intent = new Intent(this, ResultActivity.class);
             intent.putExtra("Score", score);
             intent.putExtra("TotalQuestion", questionList.size());
+            intent.putExtra("Category", Cate);
+            intent.putExtra("Diff", Diff);
             startActivity(intent);
             finish();
         }

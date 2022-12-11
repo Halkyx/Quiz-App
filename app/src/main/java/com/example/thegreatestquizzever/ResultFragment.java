@@ -17,11 +17,15 @@ import com.example.thegreatestquizzever.databinding.FragmentResultBinding;
 public class ResultFragment extends Fragment implements View.OnClickListener{
 
     FragmentResultBinding binding;
-
+    static int score = 0;
+    static int totalQuestion = 0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentResultBinding.inflate(inflater, container, false);
+        score = getActivity().getIntent().getIntExtra("Score", 0);
+        totalQuestion = getActivity().getIntent().getIntExtra("TotalQuestion", 0);
+        binding.point.setText(String.valueOf(score) + "/" + String.valueOf(totalQuestion));
         binding.retryBtn.setOnClickListener(this);
         binding.menuBtn.setOnClickListener(this);
         binding.shareBtn.setOnClickListener(this);
