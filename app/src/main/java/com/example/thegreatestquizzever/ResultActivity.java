@@ -13,37 +13,21 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
-import com.example.thegreatestquizzever.databinding.ActivityMainBinding;
+import com.example.thegreatestquizzever.databinding.ActivityPlayBinding;
+import com.example.thegreatestquizzever.databinding.ActivityResultBinding;
 
-public class MainActivity extends AppCompatActivity {
-    ActivityMainBinding binding;
+public class ResultActivity extends AppCompatActivity{
+
+    ActivityResultBinding binding;
+
     private void replaceFragment (Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        replaceFragment(new MainMenu());
-        binding.bottomMenu.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.Home:
-                    replaceFragment(new MainMenu());
-                    break;
-
-                case R.id.Score:
-                    replaceFragment(new ScoreTable());
-                    break;
-            }
-            return true;
-        });
     }
 
     @Override
@@ -78,5 +62,25 @@ public class MainActivity extends AppCompatActivity {
         String release = Build.VERSION.RELEASE;
         int sdkVersion = Build.VERSION.SDK_INT;
         return "Android SDK: " + sdkVersion + " (" + release +")";
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = ActivityResultBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        replaceFragment(new ResultFragment());
+        binding.bottomMenu.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.Home:
+                    replaceFragment(new MainMenu());
+                    break;
+
+                case R.id.Score:
+                    replaceFragment(new ScoreTable());
+                    break;
+            }
+            return true;
+        });
     }
 }

@@ -27,7 +27,14 @@
         android:id="@+id/results"
         android:name="com.example.thegreatestquizzever.Results"
         android:label="fragment_results"
-        tools:layout="@layout/fragment_results" />
+        tools:layout="@layout/fragment_results" >
+        <action
+            android:id="@+id/action_results_to_categories"
+            app:destination="@id/categories" />
+        <action
+            android:id="@+id/action_results_to_mainMenu"
+            app:destination="@id/mainMenu" />
+    </fragment>
     <fragment
         android:id="@+id/play"
         android:name="com.example.thegreatestquizzever.Play"
@@ -36,12 +43,6 @@
         <action
             android:id="@+id/action_play_to_results"
             app:destination="@id/results" />
-        <action
-            android:id="@+id/action_play_to_mainMenu"
-            app:destination="@id/mainMenu" />
-        <action
-            android:id="@+id/action_play_to_categories"
-            app:destination="@id/categories" />
     </fragment>
     <fragment
         android:id="@+id/mainMenu"

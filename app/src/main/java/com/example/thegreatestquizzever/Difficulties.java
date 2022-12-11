@@ -1,64 +1,65 @@
 package com.example.thegreatestquizzever;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavDirections;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Difficulties#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class Difficulties extends Fragment {
+import com.example.thegreatestquizzever.databinding.FragmentCategoriesBinding;
+import com.example.thegreatestquizzever.databinding.FragmentDifficultiesBinding;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class Difficulties extends Fragment implements View.OnClickListener{
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public Difficulties() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Difficulties.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Difficulties newInstance(String param1, String param2) {
-        Difficulties fragment = new Difficulties();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
+    private FragmentDifficultiesBinding binding;
+    private String chosenCate;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_difficulties, container, false);
+        binding = FragmentDifficultiesBinding.inflate(inflater, container, false);
+        getParentFragmentManager().setFragmentResultListener("Category", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                chosenCate = result.getString("Category");
+            }
+        });
+        binding.easyBtn.setOnClickListener(this);
+        binding.normalBtn.setOnClickListener(this);
+        binding.hardBtn.setOnClickListener(this);
+        return binding.getRoot();
+    }
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.easy_btn:
+                sendDiffData("Easy");
+                break;
+
+            case R.id.normal_btn:
+                sendDiffData("Normal");
+                break;
+
+            case R.id.hard_btn:
+                sendDiffData("Hard");
+                break;
+        }
+
+    }
+    private void sendDiffData(String difficulty) {
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.replace(R.id.frame_layout, new PlayFragment()).commit();
+        Bundle result = new Bundle();
+        result.putString("Diff", difficulty);
+        result.putString("Category", chosenCate);
+        getParentFragmentManager().setFragmentResult("Diff", result);
     }
 }
