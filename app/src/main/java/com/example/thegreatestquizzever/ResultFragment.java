@@ -46,8 +46,10 @@ public class ResultFragment extends Fragment implements View.OnClickListener{
             break;
             case R.id.share_btn:
                 Intent sendIntent = new Intent();
+                String cate = getActivity().getIntent().getStringExtra("Category");
+                String diff = getActivity().getIntent().getStringExtra("Diff");
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "Let's see if you can beat me!!!");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "Let's see if you can beat me!!!\n" + "I scored "+ String.valueOf(score) + "/" + String.valueOf(totalQuestion) + " on " + cate + " with " + diff + " difficulty");
                 sendIntent.setType("text/plain");
 
                 Intent shareIntent = Intent.createChooser(sendIntent, null);

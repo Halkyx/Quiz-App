@@ -141,8 +141,8 @@ public class PlayActivity extends AppCompatActivity {
                 Diff = "Hard";
             }
         }
-        binding.Cate.setText(Cate);
-        binding.Diff.setText(Diff);
+        binding.Cate.setText("Category: " + Cate);
+        binding.Diff.setText("Difficulty: " + Diff);
         getQuestionList();
         onClickAnswer();
     }
