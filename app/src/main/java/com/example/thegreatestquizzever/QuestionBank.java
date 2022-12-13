@@ -27,7 +27,7 @@ public class QuestionBank {
                     new Question("\"Titanfall 2\" won the Game of the Year awards in 2016", false),
                     new Question("\"League of Legends\" has 162 Champions as of 2022", true),
                     new Question("\"Sega Saturn\" was the last Sega console", false),
-                    new Question("T\"Cyberpunk 2077\" is the most expensive game ever made", false),
+                    new Question("\"Cyberpunk 2077\" is the most expensive game ever made", false),
                     new Question("\"DFO Duel\" is not featured in EVO 2022", true),
                     new Question("\"Dungeon and Dragons\" was the first official RPG game ever created", true),
                     new Question("Blizzard Entertainment is best known for \"World of Warcraft\"", true),
@@ -256,7 +256,7 @@ public class QuestionBank {
                     new Question("The first NFL game was in the 1800's",false),
                     new Question("Lebron James was born in the same hospital as Kevin Durant",false),
                     new Question("Women can free skate for four an a half minutes in figure skating",false),
-                    new Question("Brazil is the only country to have playe in every single soccer World Cup",true),
+                    new Question("Brazil is the only country to have played in every single soccer World Cup",true),
                     new Question("In baseball, the visiting team gets the advantage of the first bat",true)
             )
     );
