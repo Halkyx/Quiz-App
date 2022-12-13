@@ -25,15 +25,20 @@ public class Difficulties extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentDifficultiesBinding.inflate(inflater, container, false);
+
+        // take out the category data sent from categories fragment
         getParentFragmentManager().setFragmentResultListener("Category", this, new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                 chosenCate = result.getInt("Category");
             }
         });
+
+        // manage on click event
         binding.easyBtn.setOnClickListener(this);
         binding.normalBtn.setOnClickListener(this);
         binding.hardBtn.setOnClickListener(this);
+
         return binding.getRoot();
     }
     @Override
@@ -54,6 +59,7 @@ public class Difficulties extends Fragment implements View.OnClickListener{
 
     }
     private void sendDiffData(int difficulty) {
+        // put the difficulty and category data in to an intent and navigate to play activity
         Intent intent = new Intent(getActivity().getBaseContext(), PlayActivity.class);
         intent.putExtra("Category", chosenCate);
         intent.putExtra("Diff", difficulty);

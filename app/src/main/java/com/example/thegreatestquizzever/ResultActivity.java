@@ -18,6 +18,8 @@ import android.view.View;
 import com.example.thegreatestquizzever.databinding.ActivityPlayBinding;
 import com.example.thegreatestquizzever.databinding.ActivityResultBinding;
 
+
+// mostly the same as main activity
 public class ResultActivity extends AppCompatActivity{
 
     ActivityResultBinding binding;

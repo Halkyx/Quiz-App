@@ -18,6 +18,8 @@ import com.example.thegreatestquizzever.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
+
+    // function created to navigate from fragment to fragment
     private void replaceFragment (Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -31,7 +33,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // put the first fragment in
         replaceFragment(new MainMenu());
+
+        //// manage on click event in the bottom menu
         binding.bottomMenu.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.Home:
@@ -46,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // create option menu on top right of the screen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -53,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    // manage on click event for items in top menu
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {

@@ -261,9 +261,11 @@ public class QuestionBank {
             )
     );
 
-    public static ArrayList<Question> getQuestionList(@NonNull String topicName, @NonNull String level) {
+    public static ArrayList<Question> getQuestionList(@NonNull String category, @NonNull String difficulty) {
         ArrayList<Question> questionList = new ArrayList<>();
         ArrayList<Integer> questionIndex = new ArrayList<>();
+
+        // choose random item from the question list
         Random rand = new Random();
         int range = 10;
         int randomNumber = rand.nextInt(range);
@@ -274,8 +276,8 @@ public class QuestionBank {
             }
             questionIndex.add(randomNumber);
         }
-        String category = topicName;
-        String difficulty = level;
+
+        // add item based on the input topic an difficulty
         if (category == "Game") {
             if (difficulty == "Easy"){
                 for (int i=0; i<5; i++) {

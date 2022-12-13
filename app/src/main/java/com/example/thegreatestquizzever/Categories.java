@@ -22,19 +22,16 @@ public class Categories extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentCategoriesBinding.inflate(inflater, container, false);
+
+        // manage on click event
         binding.history.setOnClickListener(this);
         binding.music.setOnClickListener(this);
         binding.sci.setOnClickListener(this);
         binding.game.setOnClickListener(this);
         binding.maths.setOnClickListener(this);
         binding.sports.setOnClickListener(this);
-        return binding.getRoot();
-    }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+        return binding.getRoot();
     }
 
     @Override
@@ -61,11 +58,15 @@ public class Categories extends Fragment implements View.OnClickListener {
         }
     }
     private void sendCategoryData(int data) {
+        // navigate using fragment transaction
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.frame_layout, new Difficulties()).commit();
+
+        // create a bundle to store data in
         Bundle result = new Bundle();
         result.putInt("Category", data);
+
         getParentFragmentManager().setFragmentResult("Category", result);
     }
 }

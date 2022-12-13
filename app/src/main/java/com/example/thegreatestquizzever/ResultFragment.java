@@ -19,13 +19,20 @@ public class ResultFragment extends Fragment implements View.OnClickListener{
     FragmentResultBinding binding;
     static int score = 0;
     static int totalQuestion = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentResultBinding.inflate(inflater, container, false);
+
+        // get play data sent from play activity
         score = getActivity().getIntent().getIntExtra("Score", 0);
         totalQuestion = getActivity().getIntent().getIntExtra("TotalQuestion", 0);
+
+        // update the text of total score
         binding.point.setText(String.valueOf(score) + "/" + String.valueOf(totalQuestion));
+
+        // manage on click event
         binding.retryBtn.setOnClickListener(this);
         binding.menuBtn.setOnClickListener(this);
         binding.shareBtn.setOnClickListener(this);
@@ -36,6 +43,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.retry_btn:
+                // take player back to category fragment
                 FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.replace(R.id.frame_layout, new Categories()).commit();
@@ -51,7 +59,6 @@ public class ResultFragment extends Fragment implements View.OnClickListener{
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent.putExtra(Intent.EXTRA_TEXT, "Let's see if you can beat me!!!\n" + "I scored "+ String.valueOf(score) + "/" + String.valueOf(totalQuestion) + " on " + cate + " with " + diff + " difficulty");
                 sendIntent.setType("text/plain");
-
                 Intent shareIntent = Intent.createChooser(sendIntent, null);
                 startActivity(shareIntent);
             break;

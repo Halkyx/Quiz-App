@@ -30,6 +30,8 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ScoreViewHol
         ScoreTableItem score = scoreTally.get(position);
         if (score == null)
             return;
+
+        // update text
         holder.binding.cateTextView.setText(score.topicName);
         holder.binding.scoreTextView.setText(score.score);
         holder.binding.diffTextView.setText(score.level);

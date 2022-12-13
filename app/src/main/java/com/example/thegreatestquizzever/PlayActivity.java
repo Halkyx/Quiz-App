@@ -37,6 +37,8 @@ public class PlayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityPlayBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // take the data sent from difficulties fragment
         chosenCate = getIntent().getIntExtra("Category",0);
         chosenDiff = getIntent().getIntExtra("Diff",0);
         if (chosenCate == 1)
@@ -141,8 +143,11 @@ public class PlayActivity extends AppCompatActivity {
                 Diff = "Hard";
             }
         }
+
+        // update the text of the category and difficulty text view
         binding.Cate.setText("Category: " + Cate);
         binding.Diff.setText("Difficulty: " + Diff);
+
         getQuestionList();
         onClickAnswer();
     }
@@ -158,13 +163,24 @@ public class PlayActivity extends AppCompatActivity {
 
     private void getQuestionList() {
         questionList = new ArrayList<>();
+
+        // get question list based on the Cate and Diff variable
         questionList = QuestionBank.getQuestionList(Cate, Diff);
+
+        // update the current question index
+        String location = String.valueOf(questionIndex+1) + "/" + String.valueOf(questionList.size());
+        binding.location.setText(location);
+
         setQuestionList();
     }
     private void setQuestionList() {
+        // update the question
         binding.questionView.setText(questionList.get(questionIndex).getQuestion());
+
+        // update the progress bar
         binding.progressBar.setProgress(0);
         binding.progressBar.setMax(questionList.size());
+
         score = 0;
     }
     private void checkAnswer(Boolean userAnswer) {
@@ -177,12 +193,17 @@ public class PlayActivity extends AppCompatActivity {
         if(questionIndex < questionList.size() - 1) {
             questionIndex++;
             binding.progressBar.setProgress(questionIndex);
+
         }
         else {
             String correctAnsws = String.valueOf(score) + "/" + String.valueOf(questionList.size());
             String date = getDate();
+
+            // generate play history card view
             ScoreTableItem item = new ScoreTableItem(correctAnsws, Cate, Diff, date);
             ScoreTable.addScoreItem(item);
+
+            // put play data in intent and navigate to result activity
             Intent intent = new Intent(this, ResultActivity.class);
             intent.putExtra("Score", score);
             intent.putExtra("TotalQuestion", questionList.size());
@@ -191,6 +212,10 @@ public class PlayActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+
+        // update the text of question index and new question
+        String location = String.valueOf(questionIndex+1) + "/" + String.valueOf(questionList.size());
+        binding.location.setText(location);
         binding.questionView.setText(questionList.get(questionIndex).getQuestion());
     }
 

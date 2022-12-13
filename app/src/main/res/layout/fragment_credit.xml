@@ -39,7 +39,7 @@
             android:textColor="#C90076"
             android:textSize="32dp"
             android:textStyle="bold"
-            android:text="Contacts"/>
+            android:text="Contacts:"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

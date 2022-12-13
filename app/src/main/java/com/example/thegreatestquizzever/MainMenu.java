@@ -17,6 +17,7 @@ public class MainMenu extends Fragment implements View.OnClickListener{
 
     private FragmentMainMenuBinding binding;
 
+    // function created to navigate from fragment to fragment
     private void replaceFragment (Fragment fragment) {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -24,13 +25,17 @@ public class MainMenu extends Fragment implements View.OnClickListener{
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentMainMenuBinding.inflate(inflater, container, false);
+
+        // manage on click event
         binding.play.setOnClickListener(this);
         binding.scores.setOnClickListener(this);
         binding.credit.setOnClickListener(this);
+
         return binding.getRoot();
     }
 
