@@ -24,7 +24,7 @@ public class QuestionBank {
             Arrays.asList(
                     new Question("\"Final Fantasy 7\" is the best selling \"Final Fantasy\"", true),
                     new Question("The master ball has the highest chance to catch a Pokemon", true),
-                    new Question("\"Titanfall 2\" wont the Game of the Year awards in 2016", false),
+                    new Question("\"Titanfall 2\" won the Game of the Year awards in 2016", false),
                     new Question("\"League of Legends\" has 162 Champions as of 2022", true),
                     new Question("\"Sega Saturn\" was the last Sega console", false),
                     new Question("T\"Cyberpunk 2077\" is the most expensive game ever made", false),
